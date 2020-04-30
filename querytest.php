@@ -11,9 +11,13 @@ $result1 = $bdd->query($query1);
 
 echo '<h1>Auteurs de la BD</h1>';
 
+echo '<table>';
+echo "<tr><td>Nom</td><td>Prénom</td></tr>";
 foreach ($result1 as $data){
-    echo $data['nom'].' '.$data['prenom'].'<br>';
+    echo "<tr><td>".$data['nom']."</td><td>".$data['prenom']."</td></tr>";
 }
+
+echo '</table>';
 
 //Récupération des citations
 $query2 = "SELECT phrase FROM citation";
