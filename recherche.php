@@ -86,23 +86,23 @@ function displayResult($bdd){
             </thead>';
         $query = "SELECT id FROM siecle WHERE numero = $siecle";
         $result = $bdd->query($query);
-        foreach ($result as $data){
-            $siecleid = $data['id'];
-        }
+        $siecleid = $result->fetch()['id'];
+
         $query = "SELECT id FROM auteur WHERE nom='$auteur'";
         $result = $bdd->query($query);
-        foreach ($result as $data){
-            $auteurid = $data['id'];
-        }
+        $auteurid = $result->fetch()['id'];
+
         $query = "SELECT phrase FROM citation WHERE auteurid=$auteurid and siecleid=$siecleid";
         $result = $bdd->query($query);
+
         foreach($result as $data){
-            echo '<tr>';
-            echo '<td>'.$data['phrase'].'</td>';
-            echo '<td>'.$auteur.'</td>';
-            echo '<td>'.$siecle.'</td>';
-            echo '</tr>';
+            echo '<tr>',
+                '<td>'.$data['phrase'].'</td>',
+                '<td>'.$auteur.'</td>',
+                '<td>'.$auteur.'</td>',
+            '</tr>';
         }
+
         echo '</table>';
     }
 }

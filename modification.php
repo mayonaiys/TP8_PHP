@@ -59,21 +59,17 @@
 <?php
     include 'connexpdo.php';
     $bdd = connexpdo('pgsql:dbname=citations;host=localhost;port=5432','postgres','passwordbdd');
-    function ajouter($bdd){
-        if(isset($_POST['auteurid']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['siecleid']) && isset($_POST['numero']) && isset($_POST['phrase'])){
-            $auteurid = $_POST['auteurid'];
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $siecleid = $_POST['siecleid'];
-            $numero = $_POST['numero'];
-            $phrase = $_POST['phrase'];
-            $sql = "INSERT INTO auteur (id)  VALUES (78)";
-            if ($bdd->query($sql) === TRUE) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $bdd->error;
-            }
+    function add($bdd){
+        if(isset($_POST['auteurid']) && isset($_POST['nom']) && isset($_POST['prenom'])){
+            echo "test";
+            $addAuthor = $bdd->prepare('INSERT INTO auteur(id,nom,prenom) VALUES(:id, :nom, :prenom)');
+            $addAuthor = $bdd->execute(array(
+               'id'=>$_POST['auteurid'],
+               'nom'=>$_POST['nom'],
+               'prenom'=>$_POST['prenom']
+            ));
         }
     }
-    ajouter($bdd);
-    ?>
+    add($bdd);
+
+?>
