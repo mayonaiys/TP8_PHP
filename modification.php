@@ -59,9 +59,9 @@
 <?php
 include 'connexpdo.php';
 $bdd = connexpdo('pgsql:dbname=citations;host=localhost;port=5432','postgres','passwordbdd');
-
-$test = "INSERT INTO auteur(id,nom,prenom) VALUES(10,'test','test')";
-$bdd->query($test);
-echo "test";
-
+$var1 = 7;
+$var2 = "ouais";
+$var3 = "Le smic";
+$bdd->query("INSERT INTO auteur(id,nom,prenom) VALUES(?,?,?)");
+$bdd->execute(array($var1,$var2,$var3));
 ?>
