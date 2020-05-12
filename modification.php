@@ -57,19 +57,11 @@
 </html>
 
 <?php
-    include 'connexpdo.php';
-    $bdd = connexpdo('pgsql:dbname=citations;host=localhost;port=5432','postgres','passwordbdd');
-    function add($bdd){
-        if(isset($_POST['auteurid']) && isset($_POST['nom']) && isset($_POST['prenom'])){
-            echo "test";
-            $addAuthor = $bdd->prepare('INSERT INTO auteur(id,nom,prenom) VALUES(:id, :nom, :prenom)');
-            $addAuthor = $bdd->execute(array(
-               'id'=>$_POST['auteurid'],
-               'nom'=>$_POST['nom'],
-               'prenom'=>$_POST['prenom']
-            ));
-        }
-    }
-    add($bdd);
+include 'connexpdo.php';
+$bdd = connexpdo('pgsql:dbname=citations;host=localhost;port=5432','postgres','passwordbdd');
+
+$test = "INSERT INTO auteur(id,nom,prenom) VALUES(10,'test','test')";
+$bdd->query($test);
+echo "test";
 
 ?>
