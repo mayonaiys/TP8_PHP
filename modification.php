@@ -60,8 +60,8 @@
 include 'connexpdo.php';
 $bdd = connexpdo('pgsql:dbname=citations;host=localhost;port=5432','postgres','passwordbdd');
 $var1 = 7;
-$var2 = 'ouais';
-$var3 = 'Lesmic';
+$var2 = "ouais";
+$var3 = "Lesmic";
 $bdd->prepare("INSERT INTO auteur(id,nom,prenom) VALUES(?,?,?)");
 $bdd->execute(array($var1,$var2,$var3));
 ?>
